@@ -41,3 +41,13 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Don't push PyCharm IDE config to server
+.idea/
+
+# Test database
+db.sqlite3
+
+# Python cached modules should not be versioned
+__pycache__/
+Tutor_REST_API/__pycache__/
