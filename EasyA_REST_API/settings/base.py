@@ -1,3 +1,5 @@
+__author__ = 'TimCardwell'
+
 """
 Django settings for EasyA_REST_API project.
 
@@ -20,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '-2#g_0d!b&_q)f!7l_8r+y^^1qmw)10hb7$mgdpvqp^pctjegv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True # will be managed by environment specific files
 
 TEMPLATE_DEBUG = True
 
