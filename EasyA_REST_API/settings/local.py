@@ -13,7 +13,7 @@ DATABASES = {
         'PORT': '3306',
         'USER': 'rest_api_admin',
         'PASSWORD': 'Playstation3',
-        'NAME': 'easy_a_initial',
+        'NAME': 'easy_a',
     }
 }
 
@@ -34,18 +34,8 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': './logs/easy_a.log',
+            'filename': os.path.join(BASE_DIR, 'logs/easy_a.log'),
             'formatter': 'simple'
-        },
-        'database': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': './logs/easy_a_database.log'
-        },
-        'security': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': './logs/easy_a_security.log'
         }
     },
     'loggers': {
@@ -74,3 +64,6 @@ LOGGING = {
 # MEDIA_ROOT
 # Defines where stored files will go
 # https://docs.djangoproject.com/en/1.8/topics/files/
+# Security for this setting https://docs.djangoproject.com/en/1.8/topics/security/#user-uploaded-content-security
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

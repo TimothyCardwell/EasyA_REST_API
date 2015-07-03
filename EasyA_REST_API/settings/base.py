@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os, EasyA_REST_API
+import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'rest_framework',
-    'samples',
+    'rest_api',
     #'django.contrib.admin', While this is nice, I don't want it in here
     #'django.contrib.auth',
     #'django.contrib.contenttypes',

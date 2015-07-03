@@ -22,3 +22,5 @@ WINDOWS
     - pip install Django (from the command line, not the python interpreter)
 - Download MySQL-Python
     - pip install MySQL-python
+- Download pillow (for ImageFields)
+    - pip install Pillow
