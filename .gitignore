@@ -51,3 +51,5 @@ db.sqlite3
 # Python cached modules should not be versioned
 __pycache__/
 Tutor_REST_API/__pycache__/
+logs/easy_a.log
+*.log
