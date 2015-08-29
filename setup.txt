@@ -4,14 +4,9 @@ from setting up again on the dev server.
 Off the top of my head...
 
 WINDOWS
-- Download (the latest?) version of Python 3
+- Download version of Python 3 (I'm using 3.4 currently)
     - https://www.python.org/downloads/
     - Update your PATH variable (C:/PythonXX;C:/PythonXX/Scripts)
-- !NOTE! The following two steps are not required if downloading Python 3.4 or above
-	- Run the following script to get easy_install
-		- https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
-	- Run the following script to get pip (because easy install is deprecated)
-		- https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 - At this point it might be a good idea to setup a virtualenv. I, however, did not do this
     - http://github.com/kennethreitz/python-guide/blob/master/docs/dev/virtualenvs.rst
 - Install MySQL (Including the workbench and other packages for dev)
@@ -22,5 +17,20 @@ WINDOWS
     - pip install Django (from the command line, not the python interpreter)
 - Download MySQL-Python
     - pip install MySQL-python
+    - !NOTE! I was having issues with this (unable to find vcvarsall.bat) so I did the following:
+        - Install the correct mysqlclient file from http://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient
+        - pip install wheel
+        - pip install path_to_installed_mysqlclient_file
 - Download pillow (for ImageFields)
     - pip install Pillow
+- Setup your MySQL Server
+    - Create a schema and user account defined in the local.py settings file
+    - Make sure this user account has the correct privelages (not a DB Admin)
+- Git setup
+    - Download Git / Github / whatever Git client you prefer to clone the application locally
+    - Load the application into PyCharm (or whatever other IDE you are using)
+    - Sync / Migrate the database https://docs.djangoproject.com/en/1.8/topics/migrations/
+        - manage.py makemigrations
+        - manage.py migrate
+- Start the server
+    - manage.py runserver

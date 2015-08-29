@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AnswerAttachments',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('attachment', models.FileField(upload_to='answers/%Y/%m/%d')),
                 ('date', models.DateTimeField(default=datetime.datetime.now)),
             ],
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Answers',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('answer', models.TextField()),
                 ('date', models.DateTimeField(default=datetime.datetime.now, db_index=True)),
                 ('accepted', models.BooleanField()),
@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Degrees',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('name', models.CharField(max_length=255)),
             ],
             options={
@@ -44,14 +44,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Payments',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('fake_column', models.CharField(max_length=1)),
             ],
         ),
         migrations.CreateModel(
             name='QuestionAttachments',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('attachment', models.FileField(upload_to='questions/%Y/%m/%d')),
                 ('date', models.DateTimeField(default=datetime.datetime.now)),
             ],
@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Questions',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('subject', models.CharField(max_length=100)),
                 ('body', models.TextField()),
                 ('price', models.DecimalField(max_digits=5, decimal_places=2)),
@@ -72,14 +72,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='QuestionTags',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('question', models.ForeignKey(to='rest_api.Questions')),
             ],
         ),
         migrations.CreateModel(
             name='Schools',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('name', models.CharField(max_length=255)),
             ],
             options={
@@ -89,14 +89,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Tags',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('name', models.CharField(max_length=15, unique=True)),
             ],
         ),
         migrations.CreateModel(
             name='UserRatings',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('rating', models.IntegerField()),
                 ('comment', models.CharField(max_length=255)),
                 ('date', models.DateTimeField(default=datetime.datetime.now, db_index=True)),
@@ -108,11 +108,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Users',
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('first_name', models.CharField(max_length=35)),
                 ('last_name', models.CharField(max_length=25)),
                 ('email', models.EmailField(max_length=254)),
-                ('username', models.CharField(db_index=True, max_length=20)),
+                ('username', models.CharField(max_length=20, db_index=True)),
                 ('password', models.CharField(max_length=30)),
                 ('created', models.DateTimeField(default=datetime.datetime.now)),
                 ('last_login', models.DateTimeField(default=datetime.datetime.now)),
@@ -121,9 +121,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserDetails',
             fields=[
-                ('users_ptr', models.OneToOneField(primary_key=True, auto_created=True, serialize=False, parent_link=True, to='rest_api.Users')),
+                ('users_ptr', models.OneToOneField(parent_link=True, primary_key=True, to='rest_api.Users', auto_created=True, serialize=False)),
                 ('age', models.DateField(null=True)),
-                ('profession', models.CharField(null=True, max_length=100)),
+                ('profession', models.CharField(max_length=100, null=True)),
                 ('image', models.ImageField(null=True, upload_to='images/%Y/%m/%d')),
                 ('degree', models.OneToOneField(null=True, to='rest_api.Degrees')),
                 ('school', models.OneToOneField(null=True, to='rest_api.Schools')),

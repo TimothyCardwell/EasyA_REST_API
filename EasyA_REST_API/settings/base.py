@@ -24,6 +24,7 @@ SECRET_KEY = '-2#g_0d!b&_q)f!7l_8r+y^^1qmw)10hb7$mgdpvqp^pctjegv'
 
 ALLOWED_HOSTS = []
 
+STATIC_URL = '/static/'
 
 # Application definition
 
@@ -35,7 +36,7 @@ INSTALLED_APPS = (
     #'django.contrib.contenttypes',
     #'django.contrib.sessions', Don't need sessions in a REST API
     #'django.contrib.messages', Don't need messaging in a REST API
-    #'django.contrib.staticfiles', Don't need static files in a REST API
+    'django.contrib.staticfiles'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,11 +49,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_PERMISSION_CLASSES': [
+#        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#    ]
+#}
 
 ROOT_URLCONF = 'EasyA_REST_API.urls'
 
@@ -60,6 +61,8 @@ WSGI_APPLICATION = 'EasyA_REST_API.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
+
+
 
 LANGUAGE_CODE = 'en-us'
 

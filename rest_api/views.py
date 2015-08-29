@@ -1,52 +1,98 @@
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+from rest_api.models import *
 from rest_api.serializers import *
+from rest_framework import generics
 
 
-# Create your views here.
-class JSONResponse(HttpResponse):
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
+class UsersView(generics.ListAPIView):
+    queryset = Users.objects.all()
+    serializer_class = UserSerializer
 
 
-@csrf_exempt
-def user_list(request):
-    if request.method == 'GET':
-        users = Users.objects.all()
-        user_serializer = UserSerializer(users, many=True)
-        return JSONResponse(user_serializer.data)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        user_serializer = UserSerializer(data=data)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return JSONResponse(user_serializer.data, status=201)
-        return JSONResponse(user_serializer.errors, status=400)
+class UserView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Users.objects.all()
+    serializer_class = UserSerializer
 
 
-@csrf_exempt
-def user_detail(request, pk):
-    try:
-        user = Users.objects.get(pk=pk)
-    except Users.DoesNotExist:
-        return HttpResponse(status=404)
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserDetails.objects.all()
+    serializer_class = UserDetailSerializer
 
-    if request.method == 'GET':
-        user_serializer = UserSerializer(user)
-        return JSONResponse(user_serializer.data)
 
-    elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        user_serializer = UserSerializer(user, data=data)
-        if user_serializer.is_valid():
-            user_serializer.save()
-            return JSONResponse(user_serializer.data)
-        return JSONResponse(user_serializer.errors, status=400)
-    elif request.method == 'DELETE':
-        user.delete()
-        return HttpResponse(status=204)
+class SchoolsView(generics.ListAPIView):
+    queryset = Schools.objects.all()
+    serializer_class = SchoolSerializer
+
+
+class DegreesView(generics.ListAPIView):
+    queryset = Degrees.objects.all()
+    serializer_class = DegreeSerializer
+
+
+class UserRatingsView(generics.ListAPIView):
+    queryset = UserRatings.objects.all()
+    serializer_class = UserRatingSerializer
+
+
+class UserRatingView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserRatings.objects.all()
+    serializer_class = UserRatingSerializer
+
+
+class TagsView(generics.ListAPIView):
+    queryset = Tags.objects.all()
+    serializer_class = TagSerializer
+
+
+class TagView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Tags.objects.all()
+    serializer_class = TagSerializer
+
+
+class QuestionsView(generics.ListAPIView):
+    queryset = Questions.objects.all()
+    serializer_class = QuestionSerializer
+
+
+class QuestionView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Questions.objects.all()
+    serializer_class = QuestionSerializer
+
+
+class QuestionAttachmentsView(generics.ListAPIView):
+    queryset = QuestionAttachments.objects.all()
+    serializer_class = QuestionAttachmentSerializer
+
+
+class QuestionAttachmentView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = QuestionAttachments.objects.all()
+    serializer_class = QuestionAttachmentSerializer
+
+
+class QuestionTagsView(generics.ListAPIView):
+    queryset = QuestionTags.objects.all()
+    serializer_class = QuestionTagSerializer
+
+
+class QuestionTagView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = QuestionTags.objects.all()
+    serializer_class = QuestionTagSerializer
+
+
+class AnswersView(generics.ListAPIView):
+    queryset = Answers.objects.all()
+    serializer_class = AnswerSerializer
+
+
+class AnswerView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Answers.objects.all()
+    serializer_class = AnswerSerializer
+
+
+class AnswerAttachmentsView(generics.ListAPIView):
+    queryset = AnswerAttachments.objects.all()
+    serializer_class = AnswerAttachmentSerializer
+
+
+class AnswerAttachmentView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AnswerAttachments.objects.all()
+    serializer_class = AnswerAttachmentSerializer
